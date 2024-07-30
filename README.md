@@ -26,7 +26,7 @@ This is a simple To-Do List app developed using Expo and React Native. The app a
 
 2. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/todo-list-app.git
+   git clone https://github.com/leonelolll/TodoListApp.git
    cd todo-list-app
    ```
 
