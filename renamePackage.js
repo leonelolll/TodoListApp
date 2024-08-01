@@ -1,21 +1,78 @@
-const { exec } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 
-const newName = process.argv[2];
-const newBundleId = process.argv[3];
+const oldPackageName = 'com.myappblankbare';
+const newPackageName = 'com.todolistapp';
 
-if (!newName || !newBundleId) {
-  console.log('Usage: node renamePackage.js <NewAppName> <new.bundle.id>');
-  process.exit(1);
+const filesToUpdate = [
+  'android/app/src/main/AndroidManifest.xml',
+  'android/app/build.gradle',
+  'android/app/src/main/java/com/firstapp/MainActivity.java',
+  'android/app/src/main/java/com/firstapp/MainApplication.java'
+  // Add more file paths as needed
+];
+
+const updateFileContent = (filePath, oldContent, newContent) => {
+  if (fs.existsSync(filePath)) {
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const updatedContent = fileContent.replace(new RegExp(oldContent, 'g'), newContent);
+    fs.writeFileSync(filePath, updatedContent, 'utf8');
+    console.log(`Updated content in ${filePath}`);
+  }
+};
+
+filesToUpdate.forEach((filePath) => {
+  updateFileContent(filePath, oldPackageName, newPackageName);
+});
+
+const buildGradlePath = 'android/app/build.gradle';
+if (fs.existsSync(buildGradlePath)) {
+  updateFileContent(buildGradlePath, `applicationId "${oldPackageName}"`, `applicationId "${newPackageName}"`);
 }
 
-exec(`react-native-rename "${newName}" -b ${newBundleId} --skipGitStatusCheck`, (error, stdout, stderr) => {
-  if (error) {
-    console.error(`Error: ${error.message}`);
-    return;
+const buckFilePath = 'android/app/BUCK';
+if (fs.existsSync(buckFilePath)) {
+  updateFileContent(buckFilePath, `package = "${oldPackageName}"`, `package = "${newPackageName}"`);
+}
+
+const oldPackagePath = path.join('android/app/src/main/java', ...oldPackageName.split('.'));
+const newPackagePath = path.join('android/app/src/main/java', ...newPackageName.split('.'));
+
+const createDirectories = (dirPath) => {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+    console.log(`Created directory ${dirPath}`);
   }
-  if (stderr) {
-    console.error(`Stderr: ${stderr}`);
-    return;
+};
+
+createDirectories(newPackagePath);
+
+const moveFiles = (oldPath, newPath) => {
+  if (fs.existsSync(oldPath)) {
+    fs.readdirSync(oldPath).forEach(file => {
+      const oldFilePath = path.join(oldPath, file);
+      const newFilePath = path.join(newPath, file);
+      fs.renameSync(oldFilePath, newFilePath);
+      console.log(`Moved ${oldFilePath} to ${newFilePath}`);
+    });
   }
-  console.log(`Stdout: ${stdout}`);
-});
+};
+
+moveFiles(oldPackagePath, newPackagePath);
+
+const deleteDirectory = (dirPath) => {
+  if (fs.existsSync(dirPath)) {
+    fs.readdirSync(dirPath).forEach(file => {
+      const currentPath = path.join(dirPath, file);
+      if (fs.lstatSync(currentPath).isDirectory()) {
+        deleteDirectory(currentPath);
+      } else {
+        fs.unlinkSync(currentPath);
+      }
+    });
+    fs.rmdirSync(dirPath);
+    console.log(`Deleted directory ${dirPath}`);
+  }
+};
+
+deleteDirectory(oldPackagePath);
