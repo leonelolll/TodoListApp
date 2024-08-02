@@ -1,4 +1,4 @@
-package com.myappblankbare
+package com.todolist
 
 import android.os.Build
 import android.os.Bundle

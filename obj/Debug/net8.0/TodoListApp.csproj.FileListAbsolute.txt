@@ -1,0 +1,15 @@
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\bin\Debug\net8.0\TodoListApp.exe
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\bin\Debug\net8.0\TodoListApp.deps.json
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\bin\Debug\net8.0\TodoListApp.runtimeconfig.json
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\bin\Debug\net8.0\TodoListApp.dll
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\bin\Debug\net8.0\TodoListApp.pdb
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\TodoListApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\TodoListApp.AssemblyInfoInputs.cache
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\TodoListApp.AssemblyInfo.cs
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\TodoListApp.csproj.CoreCompileInputs.cache
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\TodoListApp.sourcelink.json
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\TodoListApp.dll
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\refint\TodoListApp.dll
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\TodoListApp.pdb
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\TodoListApp.genruntimeconfig.cache
+C:\Users\Illya Nabila\Desktop\Intern\Tricubes\React App\TodoListApp\obj\Debug\net8.0\ref\TodoListApp.dll

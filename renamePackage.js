@@ -7,8 +7,8 @@ const newPackageName = 'com.todolistapp';
 const filesToUpdate = [
   'android/app/src/main/AndroidManifest.xml',
   'android/app/build.gradle',
-  'android/app/src/main/java/com/firstapp/MainActivity.java',
-  'android/app/src/main/java/com/firstapp/MainApplication.java'
+  'android/app/src/main/java/com/todolistapp/MainActivity.kt',
+  'android/app/src/main/java/com/todolistapp/MainApplication.kt'
   // Add more file paths as needed
 ];
 

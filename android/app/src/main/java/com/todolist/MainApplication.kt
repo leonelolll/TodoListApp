@@ -1,4 +1,4 @@
-package com.myappblankbare
+package com.todolist
 
 import android.app.Application
 import android.content.res.Configuration
