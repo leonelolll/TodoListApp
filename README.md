@@ -44,9 +44,41 @@ This is a simple To-Do List app developed using Expo and React Native. The app a
    expo start
    ```
 
-### Running on a Device/Emulator
+### Changing the Package Name (Android)
 
-- Follow the instructions provided by Expo to run the app on a physical device or an emulator. You can use the Expo Go app on Android or iOS to view your project.
+If you need to change the package name of the Android app, follow these steps:
+
+1. **Update the `renamePackage.js` Script**:
+   - Edit the `renamePackage.js` script to specify your old and new package names:
+
+     ```javascript
+     const oldPackageName = 'com.myappblankbare'; // Old package name
+     const newPackageName = 'com.todolistapp';   // New package name
+     ```
+
+2. **Run the Script**:
+   - Open your command prompt or terminal and navigate to your project directory.
+   - Execute the script using Node.js:
+
+     ```sh
+     node renamePackage.js
+     ```
+
+   - The script will:
+     - Update package names in configuration files.
+     - Rename and move directories to match the new package structure.
+     - Delete old directories.
+
+3. **Clean and Rebuild the Android Project**:
+   - Navigate to the `android` directory and clean and rebuild the project:
+
+     ```sh
+     cd android
+     gradlew.bat clean
+     gradlew.bat assembleDebug
+     ```
+
+   - If you encounter issues related to SDK licenses or other Gradle errors, refer to the troubleshooting section below.
 
 ## Project Structure
 
@@ -79,9 +111,8 @@ This app was developed by following the code from these YouTube tutorials:
 - Add persistent storage using AsyncStorage or a database.
 - Implement task categories and priorities.
 - Improve UI/UX with animations and better styling.
-  
+
 ## Acknowledgements
 
 - This app was developed as a learning project using the Expo and React Native frameworks.
 - Inspired by various React Native tutorials and documentation.
-
