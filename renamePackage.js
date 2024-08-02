@@ -1,8 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const oldPackageName = 'com.myappblankbare';
-const newPackageName = 'com.todolistapp';
+const oldPackageName = process.argv[2];
+const newPackageName = process.argv[3];
+
+// const oldPackageName = 'com.myappblankbare';
+// const newPackageName = 'com.todolistapp';
 
 const filesToUpdate = [
   'android/app/src/main/AndroidManifest.xml',
