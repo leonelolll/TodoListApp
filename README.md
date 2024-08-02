@@ -27,7 +27,7 @@ This is a simple To-Do List app developed using Expo and React Native. The app a
 2. Clone the repository:
    ```sh
    git clone https://github.com/leonelolll/TodoListApp.git
-   cd todo-list-app
+   cd todolistapp
    ```
 
 3. Install dependencies:
@@ -48,20 +48,20 @@ This is a simple To-Do List app developed using Expo and React Native. The app a
 
 If you need to change the package name of the Android app, follow these steps:
 
-1. **Update the `renamePackage.js` Script**:
-   - Edit the `renamePackage.js` script to specify your old and new package names:
+#### Using the JavaScript Script
 
-     ```javascript
-     const oldPackageName = 'com.myappblankbare'; // Old package name
-     const newPackageName = 'com.todolistapp';   // New package name
-     ```
-
-2. **Run the Script**:
+1. **Run the Script**:
    - Open your command prompt or terminal and navigate to your project directory.
    - Execute the script using Node.js:
 
      ```sh
-     node renamePackage.js
+     node renamePackage.js <OldPackageName> <NewPackageName>
+     ```
+     
+   - Example:
+
+     ```sh
+     node renamePackage.js com.myapp com.todolistapp
      ```
 
    - The script will:
@@ -69,16 +69,34 @@ If you need to change the package name of the Android app, follow these steps:
      - Rename and move directories to match the new package structure.
      - Delete old directories.
 
-3. **Clean and Rebuild the Android Project**:
-   - Navigate to the `android` directory and clean and rebuild the project:
+#### Using the C# Script
 
+1. **Ensure .NET SDK is Installed**:
+   - Make sure you have the .NET SDK installed. You can download it from the [.NET download page](https://dotnet.microsoft.com/download).
+
+2. **Compile and Run the C# Script**:
+   - Compile the C# script using the .NET SDK:
+   
      ```sh
-     cd android
-     gradlew.bat clean
-     gradlew.bat assembleDebug
+     dotnet build
      ```
 
-   - If you encounter issues related to SDK licenses or other Gradle errors, refer to the troubleshooting section below.
+   - Run the compiled script with your old and new package names:
+
+     ```sh
+     dotnet run <OldPackageName> <NewPackageName>
+     ```
+
+   - Example:
+
+     ```sh
+     dotnet run com.myapp com.todolistapp
+     ```
+
+   - The script will:
+     - Update package names in configuration files.
+     - Rename and move directories to match the new package structure.
+     - Delete old directories.
 
 ## Project Structure
 
