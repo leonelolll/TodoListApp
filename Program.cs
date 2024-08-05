@@ -15,11 +15,11 @@ class Program
         string newPackageName = args[1];
 
         string basePath = "android/app/src/main/java";
-        string oldPackagePath = Path.Combine(basePath, oldPackageName.Replace('.', Path.DirectorySeparatorChar));
+        string oldPackagePath = basePath + "/" + oldPackageName.Replace('.', '/');
 
         // Dynamically generate the paths for MainActivity and MainApplication based on the old package name
-        string mainActivityPath = Path.Combine(oldPackagePath, "MainActivity.kt");
-        string mainApplicationPath = Path.Combine(oldPackagePath, "MainApplication.kt");
+        string mainActivityPath = oldPackagePath + "/" + "MainActivity.kt";
+        string mainApplicationPath = oldPackagePath + "/" + "MainApplication.kt";
 
         string[] filesToUpdate = {
             "android/app/src/main/AndroidManifest.xml",
@@ -34,25 +34,21 @@ class Program
             UpdateFileContent(filePath, oldPackageName, newPackageName);
         }
 
-        string buildGradlePath = "android/app/build.gradle";
-        if (File.Exists(buildGradlePath))
-        {
-            UpdateFileContent(buildGradlePath, $"applicationId \"{oldPackageName}\"", $"applicationId \"{newPackageName}\"");
-        }
-
         string buckFilePath = "android/app/BUCK";
         if (File.Exists(buckFilePath))
         {
             UpdateFileContent(buckFilePath, $"package = \"{oldPackageName}\"", $"package = \"{newPackageName}\"");
         }
 
-        string newPackagePath = Path.Combine("android/app/src/main/java", newPackageName.Replace('.', Path.DirectorySeparatorChar));
+        string newPackagePath = "android/app/src/main/java" + "/" + newPackageName.Replace('.', '/');
 
         CreateDirectories(newPackagePath);
 
         MoveFiles(oldPackagePath, newPackagePath);
 
         DeleteDirectory(oldPackagePath);
+
+        DeleteEmptyDirectories(basePath);
     }
 
     static void UpdateFileContent(string filePath, string oldContent, string newContent)
@@ -87,7 +83,7 @@ class Program
             foreach (var file in Directory.GetFiles(oldPath))
             {
                 string fileName = Path.GetFileName(file);
-                string newFilePath = Path.Combine(newPath, fileName);
+                string newFilePath = newPath + "/" + fileName;
                 File.Move(file, newFilePath);
                 Console.WriteLine($"Moved {file} to {newFilePath}");
             }
@@ -112,6 +108,45 @@ class Program
             }
             Directory.Delete(dirPath);
             Console.WriteLine($"Deleted directory {dirPath}");
+        }
+        else
+        {
+            Console.WriteLine($"Directory not found: {dirPath}");
+        }
+
+        
+    }
+
+    static void DeleteEmptyDirectories(string dirPath)
+    {
+        // Ensure the directory exists before attempting to process it
+        if (Directory.Exists(dirPath))
+        {
+            // Get all subdirectories in the current directory
+            var subdirectories = Directory.GetDirectories(dirPath);
+
+            foreach (var subdirectory in subdirectories)
+            {
+                // Recursively delete empty subdirectories in each subdirectory
+                DeleteEmptyDirectories(subdirectory);
+
+                // Check if the current subdirectory is empty
+                if (Directory.GetFiles(subdirectory).Length == 0 && 
+                    Directory.GetDirectories(subdirectory).Length == 0)
+                {
+                    try
+                    {
+                        // Delete the empty subdirectory
+                        Directory.Delete(subdirectory);
+                        Console.WriteLine($"Deleted empty directory: {subdirectory}");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exceptions, such as permission issues or file locks
+                        Console.WriteLine($"Error deleting directory: {subdirectory}. {ex.Message}");
+                    }
+                }
+            }
         }
         else
         {
