@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Illya Nabila\\Desktop\\Intern\\Tricubes\\React App\\TodoListApp\\TodoListApp.csproj",
+      "projectUniqueName": "C:\\Users\\Illya Nabila\\TodoListApp\\TodoListApp.csproj",
       "projectName": "TodoListApp",
-      "projectPath": "C:\\Users\\Illya Nabila\\Desktop\\Intern\\Tricubes\\React App\\TodoListApp\\TodoListApp.csproj",
+      "projectPath": "C:\\Users\\Illya Nabila\\TodoListApp\\TodoListApp.csproj",
       "packagesPath": "C:\\Users\\Illya Nabila\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Illya Nabila\\Desktop\\Intern\\Tricubes\\React App\\TodoListApp\\obj\\",
+      "outputPath": "C:\\Users\\Illya Nabila\\TodoListApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Illya Nabila\\AppData\\Roaming\\NuGet\\NuGet.Config",

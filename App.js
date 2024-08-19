@@ -1,10 +1,23 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform, TouchableOpacity, Keyboard } from "react-native";
+import HMSPush from "@hmscore/react-native-hms-push";
 import Task from "./components/Task";
 
 export default function App() {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
+
+  useEffect(() => {
+    // Request for Huawei Push Token
+    HMSPush.HmsPushInstanceId.getToken("")
+      .then((result) => {
+        console.log("Huawei Push Token: ", result.token);
+        // You can handle the obtained push token here (e.g., send it to your backend)
+      })
+      .catch((err) => {
+        console.log("Error obtaining push token: ", err);
+      });
+  }, []);
 
   const handleAddTask = () => {
     Keyboard.dismiss();
@@ -36,8 +49,8 @@ export default function App() {
               )
             })
           }
-          <Task text={"Task 1"} />
-          <Task text={"Task 2"} />
+          {/* <Task text={"Task 1"} />
+          <Task text={"Task 2"} /> */}
         </View>
       </View>
 

@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@hmscore/react-native-hms-push": "^6.12.0-301",
     "expo": "~51.0.23",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
